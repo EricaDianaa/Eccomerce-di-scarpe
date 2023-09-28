@@ -199,10 +199,6 @@ namespace w14_3.Models
             conn.Close();
         }
 
-        public void Session_OnEnd()
-        {
-            FormsAuthentication.SignOut();
-          
-        }
+    
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls.WebParts;
 using w14_3.Models;
 
@@ -13,7 +14,8 @@ namespace w14_3.Controllers
 {
   
     public class HomeController : Controller
-    {     string connection = ConfigurationManager.ConnectionStrings["ConnectionDB"]
+    {   
+        string connection = ConfigurationManager.ConnectionStrings["ConnectionDB"]
            .ConnectionString.ToString();
            
         public ActionResult Index()
@@ -29,7 +31,7 @@ namespace w14_3.Controllers
             return View(Prodotto.listDettaglio);
         }
 
-       public ActionResult Admin()
+        public ActionResult Admin()
         {
         
             Prodotto.SelectProdotti();
@@ -216,6 +218,18 @@ namespace w14_3.Controllers
 
             }
             return Redirect("index");
+        }
+
+        public ActionResult Login()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(Utente u)
+        {
+            FormsAuthentication.SetAuthCookie(u.Username, false);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
