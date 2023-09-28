@@ -1,0 +1,28 @@
+﻿@using w14_3.Models
+@{
+    ViewBag.Title = "Index";
+
+}
+<h2 class="text-center">Scarpe.it</h2>
+<h3  class="text-center">La scarpa che viene da te</h3>
+<div class="container">
+    <div class="row">
+        
+        @foreach (Prodotto p in Model)
+        {
+            if (p.Vetrina == true)
+            {
+                <div class="col-6 col-md-4 col-lg-4">
+                    <div class="card">
+                        <img src="Content/img/@p.ImgeBox" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@p.NomeProdotto</h5>
+                            <p class="card-text">@p.Prezzo</p>
+                            <a href="Home/Dettagli?IdProd=@p.IdProdotto" class="btn btn-primary">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
